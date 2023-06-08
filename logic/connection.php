@@ -1,33 +1,64 @@
 <?php
 
-// $credenciales["http"]["method"] = "POST";
-// $credenciales["http"]["header"] = "Content-type: application/json";
-// $data = [
-//     "cc"=>"123",
-//     "nombre"=> "Miguel",
-//     "apelldio"=> "Castro",
-//     "edad"=> 23
-// ];
-// $data = json_encode($data);
-// $credenciales["http"]["content"] = $data;
-// $config = stream_context_create($credenciales);
-
-// $_DATA = file_get_contents("https://6480e3fef061e6ec4d4a0194.mockapi.io/informacion", false, $config);
-// print_r($_DATA);
-
 class DbInteraction{
-    public function obtenData(){
+
+    protected $url;
+
+    public function __construct($url) {
+        $this->url = $url;
+    }
+    
+    public function getData(){
     $credenciales["http"] = [];
     $credenciales["http"]["method"] = "GET";
 
     $config = stream_context_create($credenciales);
 
 
-    $_DATA = file_get_contents("https://6480fa30f061e6ec4d4a21b7.mockapi.io/Tablacompleta", false, $config);
-    return($_DATA);
-}
+    $_DATA = file_get_contents($this->url, false, $config);
+    return(json_decode($_DATA, true));
+    }
+
+    public function postData(mixed $datas){
+        header('Content-Type: application/json');
+
+    $credenciales["http"]["method"] = "POST";
+    $credenciales["http"]["headers"]["Content-Type"] = "application/json";
+    $data = $datas;
+    // $data = http_build_query($data);
+    $credenciales["http"]["content"] = $data;
+    $config = stream_context_create($credenciales);
+
+    $_DATA = file_get_contents($this->url, false, $config);
+    print_r(json_decode($_DATA , true));
+    }
+
+    public function deleteData(mixed $cedula){
+        $dataToSearch=$this->getData();
+
+        $cedulaToFind = $cedula;
+        $matchingElement = null;
+
+        foreach ($dataToSearch as $element) {
+            if ($element['Cedula'] == $cedulaToFind) {
+                $matchingElement = $element;
+                break;
+            }
+        }
+
+        header('Content-Type: application/json');
+
+        $credenciales["http"]["method"] = "DELETE";
+        $config = stream_context_create($credenciales);
+
+        $_DATA = file_get_contents($this->url."/".$matchingElement["id"], false, $config);
+        return json_decode($_DATA , true);
+    }
+
+    public function putData(mixed $datas){
+        $obtenerData = $this->deleteData($datas);
+        return $obtenerData;
 
 
-
-
+    }
 }

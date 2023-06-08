@@ -1,11 +1,11 @@
 <?php
 require('./logic/connection.php');
 
-$operacion= new DbInteraction();
+$operacion= new DbInteraction("https://6480fa30f061e6ec4d4a21b7.mockapi.io/Tablacompleta");
 
-$result=$operacion->obtenData();
+$result=$operacion->putData(24);
 
-//print_r($result);
+print_r($result);
 
 
 ?>
@@ -67,7 +67,7 @@ $result=$operacion->obtenData();
 </div>
 
     <div class="hero">
-        <input type="datetime" name="Hora de Entrada" require placeholder="Ingresa tu Hora de entrada">
+        <input type="time" name="Hora de Entrada" require placeholder="Ingresa tu Hora de entrada">
         <input type="text" name="Team" placeholder="Ingresa tu team">
         <input type="text" name="cc" placeholder="Ingresa tu identificacion personal">
         <input type="text" name="Trainer" placeholder="Ingresa tu trainer">
