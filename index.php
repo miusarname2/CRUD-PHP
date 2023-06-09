@@ -29,26 +29,26 @@
   <form action="./logic/logic.php" method="POST">
     <div class="input-group">
       <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre"  placeholder="Ingresa tu nombre">
+      <input type="text" id="nombre" name="nombre"  placeholder="Ingresa tu nombre" value=<?php isset($_GET["nombre"])?print_r($_GET["nombre"]):""?>>
     </div>
     <div class="input-group">
       <label for="apellido">Apellido:</label>
-      <input type="text" id="apellido" name="Apellido"  placeholder="Ingresa tu apellido">
+      <input type="text" id="apellido" name="Apellido"  placeholder="Ingresa tu apellido" value=<?php isset($_GET["Apellido"])?print_r($_GET["Apellido"]):""?>>
     </div>
     <div class="input-group">
       <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="Direccion" placeholder="Ingresa tu dirección">
+      <input type="text" id="direccion" name="Direccion" placeholder="Ingresa tu dirección" value=<?php isset($_GET["Direccion"])?print_r($_GET["Direccion"]):""?>>
     </div>
     <div class="column">
       <div class="input-group">
         <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="Edad"  placeholder="Ingresa tu edad">
+        <input type="number" id="edad" name="Edad"  placeholder="Ingresa tu edad" value=<?php isset($_GET["Edad"])?print_r($_GET["Edad"]):""?>>
       </div>
     </div>
     <div class="column">
       <div class="input-group">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="Email"  placeholder="Ingresa tu Email">
+        <input type="email" id="email" name="Email"  placeholder="Ingresa tu Email" value=<?php isset($_GET["Email"])?print_r($_GET["Email"]):""?>>
       </div>
     </div>
     <div class="column">
@@ -58,11 +58,11 @@
     </div>
 </div>
     <div class="hero">
-        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada">
-        <input type="text" name="Team" placeholder="Ingresa tu team">
-        <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal">
-        <input type="text" name="Trainer" placeholder="Ingresa tu trainer">
-        <input type="submit" value="save" name="Oper">
+        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada" value=<?php isset($_GET["HoraEntrada"])?print_r($_GET["HoraEntrada"]):""?>>
+        <input type="text" name="Team" placeholder="Ingresa tu team" value=<?php isset($_GET["Team"])?print_r($_GET["Team"]):""?>>
+        <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal" value=<?php isset($_GET["Cedula"])?print_r($_GET["Cedula"]):""?> >
+        <input type="text" name="Trainer" placeholder="Ingresa tu trainer" value=<?php isset($_GET["Trainer"])?print_r($_GET["Trainer"]):""?>>
+        <input type="submit" value="save" name="Oper" >
         <input type="submit" value="delete" name="Oper">
         <input type="submit" value="Edit" name="Oper">
         <input type="submit" value="search" name="Oper">
