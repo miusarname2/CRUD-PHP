@@ -1,5 +1,9 @@
 <?php
-//require('./logic/logic.php');
+ require('./logic/db/connection.php');
+
+ $operacion= new DbInteraction("https://6480fa30f061e6ec4d4a21b7.mockapi.io/Tablacompleta");
+
+ $hola = $operacion -> getData();
 ?>
 
 <!DOCTYPE html>
@@ -68,5 +72,42 @@
         <input type="submit" value="search" name="Oper">
     </div>
     </form>
+
+
+    <table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Direccion</th>
+      <th>Edad</th>
+      <th>Email</th>
+      <th>Hora de entrada</th>
+      <th>Team</th>
+      <th>Cedula</th>
+      <th>Trainer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($hola as $item) {?>
+    <tr>
+      <td><?php print_r($item['nombre'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Apellido'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Direccion'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Edad'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Email'] . PHP_EOL);?></td>
+      <td><?php print_r($item['HoraEntrada'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Team'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Cedula'] . PHP_EOL);?></td>
+      <td><?php print_r($item['Trainer'] . PHP_EOL);?></td>
+      <td><form  action="./logic/logic.php" method="POST" >
+      <input type="text" required name="Cedula" style="display: none;" placeholder="Ingresa tu identificacion personal" value=<?php print_r($item['Cedula']);?>>
+      <input type="submit" value="search" name="Oper">
+</form></td>
+    </tr>
+    <?php }?>
+  </tbody>
+</table>
+
 </body>
 </html>

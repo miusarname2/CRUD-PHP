@@ -9,4 +9,10 @@
 .column {
   margin-bottom: 10px;
 }
+
+table {
+  border: 1px solid blue;
+  background-color: white;
+}
+
   

@@ -23,7 +23,7 @@ class DbInteraction{
         $credenciales["http"]["content"] = $dataEncoded ;
         $config = stream_context_create($credenciales);
         $_DATA = file_get_contents($this->url, false, $config);
-        return(json_decode($_DATA, true));
+        $response= json_decode($_DATA, true);
     }
     
     public function deleteData(mixed $cedula) {
@@ -39,7 +39,7 @@ class DbInteraction{
         $credenciales["http"]["method"] = "DELETE";
         $config = stream_context_create($credenciales);
         $_DATA = file_get_contents($this->url . "/" . $matchingElement["id"], false, $config);
-        return json_decode($_DATA, true);
+        $response= json_decode($_DATA, true);
     }
     
     public function putData($datas, $id) {
@@ -50,7 +50,7 @@ class DbInteraction{
         $credenciales["http"]["content"] = $dataEncoded;
         $config = stream_context_create($credenciales);
         $_DATA = file_get_contents($this->url . "/" . $id, false, $config);
-        print_r(json_decode($_DATA, true));
+        $response=  json_decode($_DATA, true);
     }
     
     public function getUserData($cedula) {
