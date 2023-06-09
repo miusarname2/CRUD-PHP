@@ -3,7 +3,7 @@ require('./logic/connection.php');
 
 $operacion= new DbInteraction("https://6480fa30f061e6ec4d4a21b7.mockapi.io/Tablacompleta");
 
-$result=$operacion->putData(24);
+$result=$operacion->getUserData(88);
 
 print_r($result);
 

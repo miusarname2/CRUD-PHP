@@ -55,10 +55,42 @@ class DbInteraction{
         return json_decode($_DATA , true);
     }
 
-    public function putData(mixed $datas){
-        $obtenerData = $this->deleteData($datas);
-        return $obtenerData;
+
+    //Pendiente...
+    public function putData(mixed $datas, mixed $id){
+        header('Content-Type: application/json');
+
+    $credenciales["http"]["method"] = "PUT";
+    $credenciales["http"]["headers"]["Content-Type"] = "application/json";
+    $data = $datas;
+    // $data = http_build_query($data);
+    $credenciales["http"]["content"] = $data;
+    $config = stream_context_create($credenciales);
+
+    $_DATA = file_get_contents($this->url."/".$id, false, $config);
+    print_r(json_decode($_DATA , true));
+    }
+
+    public function getUserData(mixed $cedula){
+        $dataToSearch=$this->getData();
+
+        $cedulaToFind = $cedula;
+        $matchingElement = null;
+
+        foreach ($dataToSearch as $element) {
+            if ($element['Cedula'] == $cedulaToFind) {
+                $matchingElement = $element;
+                break;
+            }
+        }
+
+    $credenciales["http"] = [];
+    $credenciales["http"]["method"] = "GET";
+
+    $config = stream_context_create($credenciales);
 
 
+    $_DATA = file_get_contents($this->url."/".$matchingElement["id"], false, $config);
+    return(json_decode($_DATA, true));
     }
 }
