@@ -9,15 +9,20 @@ if ($_POST["Oper"] == "save"){
     if (isset($getInfo["id"])) {
     array_pop($_POST);
     $operacion->putData($_POST,$getInfo["id"]);
+    header("Location:../index.php");
     }else{
     array_pop($_POST);
     $operacion->postData($_POST);
+    header("Location:../index.php");
     }
 }elseif($_POST["Oper"] == "delete"){
     $operacion->deleteData($_POST["Cedula"]);
+    header("Location:../index.php");
 }elseif($_POST["Oper"] == "Edit" || $_POST["Oper"] == "search"){
     $getInfo = $operacion->getUserData($_POST["Cedula"]);
     header("Location:../index.php?nombre=".$getInfo["nombre"]."&Apellido=".$getInfo["Apellido"]."&Direccion=".$getInfo["Direccion"]."&Edad=".$getInfo["Edad"]."&Email=".$getInfo["Email"]."&HoraEntrada=".$getInfo["HoraEntrada"]."&Team=".$getInfo["Team"]."&Cedula=".$getInfo["Cedula"]."&Trainer=".$getInfo["Trainer"]);
+}else{
+    echo "Error";
 }
 
 function obtenerData(){

@@ -15,17 +15,29 @@
     <link rel="stylesheet" href="./Css/stlye.css">
     <title>Document</title>
     <style>
-.header {
-  border: 1px solid black;
-  padding: 10px;
-}
-.input-group {
-  width: 50%;
-  float: left;
-}   
+./* Set the width of the columns */
 .column {
-  margin-bottom: 10px;
+  width: 50%;
 }
+
+/* Set the left column to contain the name, surname, address, entry time, team, and trainer inputs */
+.left-column {
+  float: left;
+}
+
+/* Set the right column to contain the other inputs */
+.right-column {
+  float: right;
+}
+
+/* Set the submit type inputs to be in two subcolumns within the right column */
+.right-column .button-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
 </style>
 </head>
 <body>
@@ -60,17 +72,39 @@
         <tr>Campuslands
       </div>
     </div>
-</div>
-    <div class="hero">
-        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada" value=<?php isset($_GET["HoraEntrada"])?print_r($_GET["HoraEntrada"]):""?>>
-        <input type="text" name="Team" placeholder="Ingresa tu team" value=<?php isset($_GET["Team"])?print_r($_GET["Team"]):""?>>
-        <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal" value=<?php isset($_GET["Cedula"])?print_r($_GET["Cedula"]):""?> >
-        <input type="text" name="Trainer" placeholder="Ingresa tu trainer" value=<?php isset($_GET["Trainer"])?print_r($_GET["Trainer"]):""?>>
+    <div class="column">
+      <div class="input-group">
+      <div class="col-right">
+      <div class="button-row">
         <input type="submit" value="save" name="Oper" >
         <input type="submit" value="delete" name="Oper">
+      </div>
+      <div class="button-row">
         <input type="submit" value="Edit" name="Oper">
         <input type="submit" value="search" name="Oper">
+      </div>
     </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-group">
+        <label for="HoraEntrada">Hora de llegada:</label>
+        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada" value=<?php isset($_GET["HoraEntrada"])?print_r($_GET["HoraEntrada"]):""?>>
+      </div>
+    </div><br>
+    <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal" value=<?php isset($_GET["Cedula"])?print_r($_GET["Cedula"]):""?> ><br><br>
+        <input type="text" name="Team" placeholder="Ingresa tu team" value=<?php isset($_GET["Team"])?print_r($_GET["Team"]):""?>><br>
+        <input type="text" name="Trainer" placeholder="Ingresa tu trainer" value=<?php isset($_GET["Trainer"])?print_r($_GET["Trainer"]):""?>>
+
+
+    <input style="visibility: hidden;">
+
+    
+
+</div>
+  </div>
+</div>
+
     </form>
 
 
