@@ -15,17 +15,18 @@ class DbInteraction{
         return json_decode($_DATA, true);
     }
     
-    public function postData($datas) {
+    public function postData(mixed $datas) {
         header('Content-Type: application/json');
+        $dataEncoded = http_build_query($datas);
         $credenciales["http"]["method"] = "POST";
         $credenciales["http"]["headers"]["Content-Type"] = "application/json";
-        $credenciales["http"]["content"] = $datas;
+        $credenciales["http"]["content"] = $dataEncoded ;
         $config = stream_context_create($credenciales);
         $_DATA = file_get_contents($this->url, false, $config);
-        print_r(json_decode($_DATA, true));
+        return(json_decode($_DATA, true));
     }
     
-    public function deleteData($cedula) {
+    public function deleteData(mixed $cedula) {
         $dataToSearch = $this->getData();
         $matchingElement = null;
         foreach ($dataToSearch as $element) {
@@ -43,9 +44,10 @@ class DbInteraction{
     
     public function putData($datas, $id) {
         header('Content-Type: application/json');
+        $dataEncoded = http_build_query($datas);
         $credenciales["http"]["method"] = "PUT";
         $credenciales["http"]["headers"]["Content-Type"] = "application/json";
-        $credenciales["http"]["content"] = $datas;
+        $credenciales["http"]["content"] = $dataEncoded;
         $config = stream_context_create($credenciales);
         $_DATA = file_get_contents($this->url . "/" . $id, false, $config);
         print_r(json_decode($_DATA, true));
