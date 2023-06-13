@@ -11,7 +11,6 @@ if ($_POST["Oper"] == "save"){
     $operacion->putData($_POST,$getInfo["id"]);
     header("Location:../index.php");
     }else{
-    array_pop($_POST);
     $operacion->postData($_POST);
     header("Location:../index.php");
     }
