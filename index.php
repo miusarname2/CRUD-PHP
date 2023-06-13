@@ -15,67 +15,41 @@
     <link rel="stylesheet" href="./Css/stlye.css">
     <title>Document</title>
     <style>
-./* Set the width of the columns */
-.column {
-  width: 50%;
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
-/* Set the left column to contain the name, surname, address, entry time, team, and trainer inputs */
-.left-column {
-  float: left;
-}
-
-/* Set the right column to contain the other inputs */
-.right-column {
-  float: right;
-}
-
-/* Set the submit type inputs to be in two subcolumns within the right column */
-.right-column .button-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.left-column, .right-column {
+  padding: 10px;
 }
 
 
 </style>
 </head>
 <body>
-<div class="header">
-  <form action="./logic/logic.php" method="POST">
-    <div class="input-group">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre"  placeholder="Ingresa tu nombre" value=<?php isset($_GET["nombre"])?print_r($_GET["nombre"]):""?>>
-    </div>
-    <div class="input-group">
+    <form action="./logic/logic.php" method="POST">
+    <div class="container">
+    <div class="left-column">
+    <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" name="nombre"  placeholder="Ingresa tu nombre" value=<?php isset($_GET["nombre"])?print_r($_GET["nombre"]):""?>><br>
       <label for="apellido">Apellido:</label>
-      <input type="text" id="apellido" name="Apellido"  placeholder="Ingresa tu apellido" value=<?php isset($_GET["Apellido"])?print_r($_GET["Apellido"]):""?>>
-    </div>
-    <div class="input-group">
+      <input type="text" id="apellido" name="Apellido"  placeholder="Ingresa tu apellido" value=<?php isset($_GET["Apellido"])?print_r($_GET["Apellido"]):""?>><br>
       <label for="direccion">Dirección:</label>
-      <input type="text" id="direccion" name="Direccion" placeholder="Ingresa tu dirección" value=<?php isset($_GET["Direccion"])?print_r($_GET["Direccion"]):""?>>
+      <input type="text" id="direccion" name="Direccion" placeholder="Ingresa tu dirección" value=<?php isset($_GET["Direccion"])?print_r($_GET["Direccion"]):""?>><br>
+      <label for="HoraEntrada">Hora de llegada:</label>
+        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada" value=<?php isset($_GET["HoraEntrada"])?print_r($_GET["HoraEntrada"]):""?>><br>
+        <input type="text" name="Team" placeholder="Ingresa tu team" value=<?php isset($_GET["Team"])?print_r($_GET["Team"]):""?>><br>
+        <input type="text" name="Trainer" placeholder="Ingresa tu trainer" value=<?php isset($_GET["Trainer"])?print_r($_GET["Trainer"]):""?>><br>
     </div>
-    <div class="column">
-      <div class="input-group">
-        <label for="edad">Edad:</label>
-        <input type="number" id="edad" name="Edad"  placeholder="Ingresa tu edad" value=<?php isset($_GET["Edad"])?print_r($_GET["Edad"]):""?>>
-      </div>
-    </div>
-    <div class="column">
-      <div class="input-group">
+    <div class="right-column">
+      <h3>Campuslands</h3>
+    <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="Edad"  placeholder="Ingresa tu edad" value=<?php isset($_GET["Edad"])?print_r($_GET["Edad"]):""?>><br>
         <label for="email">Email:</label>
-        <input type="email" id="email" name="Email"  placeholder="Ingresa tu Email" value=<?php isset($_GET["Email"])?print_r($_GET["Email"]):""?>>
-      </div>
-    </div>
-    <div class="column">
-      <div class="input-group">
-        <tr>Campuslands
-      </div>
-    </div>
-    <div class="column">
-      <div class="input-group">
-      <div class="col-right">
-      <div class="button-row">
+        <input type="email" id="email" name="Email"  placeholder="Ingresa tu Email" value=<?php isset($_GET["Email"])?print_r($_GET["Email"]):""?>><br>
+        <div class="button-row">
         <input type="submit" value="save" name="Oper" >
         <input type="submit" value="delete" name="Oper">
       </div>
@@ -84,29 +58,7 @@
         <input type="submit" value="search" name="Oper">
       </div>
     </div>
-      </div>
-    </div>
-    <div class="column">
-      <div class="input-group">
-        <label for="HoraEntrada">Hora de llegada:</label>
-        <input type="time" name="HoraEntrada" require placeholder="Ingresa tu Hora de entrada" value=<?php isset($_GET["HoraEntrada"])?print_r($_GET["HoraEntrada"]):""?>>
-      </div>
-    </div><br>
-    <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal" value=<?php isset($_GET["Cedula"])?print_r($_GET["Cedula"]):""?> ><br><br>
-        <input type="text" name="Team" placeholder="Ingresa tu team" value=<?php isset($_GET["Team"])?print_r($_GET["Team"]):""?>><br>
-        <input type="text" name="Trainer" placeholder="Ingresa tu trainer" value=<?php isset($_GET["Trainer"])?print_r($_GET["Trainer"]):""?>>
-
-
-    <input style="visibility: hidden;">
-
-    
-
-</div>
   </div>
-</div>
-
-    </form>
-
 
     <table>
   <thead>
