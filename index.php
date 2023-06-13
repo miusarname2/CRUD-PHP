@@ -57,8 +57,10 @@
         <input type="submit" value="Edit" name="Oper">
         <input type="submit" value="search" name="Oper">
       </div>
+      <input type="text" required name="Cedula" placeholder="Ingresa tu identificacion personal" value=<?php isset($_GET["Cedula"])?print_r($_GET["Cedula"]):""?> >
     </div>
   </div>
+</form>
 
     <table>
   <thead>
